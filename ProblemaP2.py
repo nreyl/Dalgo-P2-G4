@@ -1,6 +1,6 @@
 import sys
 
-def contar_componentes(permutacion):
+def contar_componentes_greedy(permutacion):
     # Mayor valor visto hasta la posición actual
     maximo = 0
     # Cantidad de componentes encontrados (cada corte cierra uno)
@@ -20,17 +20,15 @@ def contar_componentes(permutacion):
     return componentes
 
 def main():
-    # Leer toda la entrada de una vez, es más rápido que leer línea por línea
-    lineas = sys.stdin.read().split("\n")
- 
     # La primera línea indica cuántos casos de prueba hay
-    casos = int(lineas[0])
- 
+    casos = int(sys.stdin.readline())
+
     resultados = []
-    for k in range(1, casos + 1):
-        # Cada línea siguiente es una permutación con los números separados por espacio
-        permutacion = list(map(int, lineas[k].split()))
-        resultados.append(str(contar_componentes(permutacion)))
+    for _ in range(casos):
+        # Cada línea siguiente es una permutación con los números separados por espacio.
+        # Se lee solo la cantidad de líneas necesaria, sin esperar al fin de la entrada.
+        permutacion = list(map(int, sys.stdin.readline().split()))
+        resultados.append(str(contar_componentes_greedy(permutacion)))
  
     # Imprimir una respuesta por línea
     print("\n".join(resultados))
